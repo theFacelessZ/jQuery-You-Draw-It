@@ -1,0 +1,106 @@
+@keyframes rectPulse {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0.3;
+    }
+}
+
+.guess-chart {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.guess-chart .chart-container {
+    display: table;
+    position: relative;
+
+    margin: 0 auto;
+}
+
+.guess-chart svg {
+    overflow: visible;
+}
+
+.guess-chart svg > g {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.guess-chart .grid line {
+    stroke: rgba(0, 0, 0, 0.1);
+    stroke-dasharray: 4 3;
+    stroke-linecap: round;
+}
+
+.guess-chart .answer-rect {
+    fill: #e96904;
+
+    -webkit-animation: rectPulse 1.5s infinite;
+    -o-animation: rectPulse 1.5s infinite;
+    animation: rectPulse 1.5s infinite;
+
+    -webkit-animation-direction: alternate;
+    -moz-animation-direction: alternate;
+    -o-animation-direction: alternate;
+    animation-direction: alternate;
+
+    animation-timing-function: ease-out;
+}
+
+.guess-chart path {
+    fill-opacity: 0;
+    stroke-width: 3px;
+}
+
+.guess-chart .graph-path-user {
+    stroke-dasharray: 5 5;
+}
+
+.guess-chart .correct-graph .area {
+    fill-opacity: 1;;
+    fill: #f7f7f7;
+}
+
+.guess-chart circle {
+    fill: red;
+}
+
+.guess-chart text {
+    font-weight: bold;
+}
+
+.guess-chart .graph-path-left-point text {
+    text-anchor: end;
+    -webkit-transform: translate(-10px, 0);
+    -moz-transform: translate(-10px, 0);
+    -ms-transform: translate(-10px, 0);
+    -o-transform: translate(-10px, 0);
+    transform: translate(-10px, 0);
+}
+
+.guess-chart .graph-path-right-point > * {
+    fill: #4286bc;
+}
+
+.guess-chart .graph-path-user-point > * {
+    fill: #e96904;
+}
+
+.guess-chart .graph-path-user-point text,
+.guess-chart .graph-path-right-point text {
+    -webkit-transform: translate(10px, 10px);
+    -moz-transform: translate(10px, 10px);
+    -ms-transform: translate(10px, 10px);
+    -o-transform: translate(10px, 10px);
+    transform: translate(10px, 10px);
+}
+
+.guess-chart .graph-path-right-point text {
+    text-anchor: start;
+}
+
+.guess-chart .graph-ui-drag {
+    fill: rgba(0,0,0,0);
+    cursor: pointer;
+}

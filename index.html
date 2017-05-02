@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="graph.jquery.js"></script>
+
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,900" rel="stylesheet">
+    </head>
+
+    <body>
+        <script>
+            $(document).ready(function() {
+                $('.guess-chart:not(.chart-random)').each(function() {
+                    $(this).graph();
+                });
+
+		var randPoints = [];
+		var randDispersion = 30000;
+		var pointsCount = 30;
+		var smoothSamples = 15;
+
+		for (var i = 0; i < pointsCount + smoothSamples; i++) {
+			var smoothBuffer = 0;
+
+			for (var s = 1; s <= Math.min(smoothSamples, i); s++) {
+				smoothBuffer += randPoints[i - s];
+			}
+
+			var rand = Math.random() * randDispersion;
+			//rand -= randDispersion / 2;
+
+			randPoints[i] = Math.round((smoothBuffer + rand) / Math.min(smoothSamples, i + 1));
+		}
+		randPoints = randPoints.slice(smoothSamples, pointsCount + smoothSamples);
+		var countLeft = Math.round(pointsCount / 2);
+
+		console.log(randPoints);
+
+		$('#chart-04').graph({
+			resX: 500,
+			resY: 300,
+			stepY: 4000,
+			bounds: 5000,
+			points: randPoints.slice(0, countLeft),
+			correct: randPoints.slice(countLeft, pointsCount)
+		});
+            });
+        </script>
+
+        <div id="chart-01" class="guess-chart" data-settings='{"resX": 500, "resY": 300, "stepY": 0.1, "bounds": 0.2, "points": [0.38, 0.37], "correct": [0.49, 0.54, 0.56], "debug": true}'>
+            <div class="chart-container">
+                <div class="chart">
+                    <svg width="530" height="330">
+                        <g class="graph-container" transform="translate(15,15)">
+                            <g class="grid">
+                                <g class="gridX">
+                                </g>
+                                <g class="gridY">
+                                </g>
+                            </g>
+                            <g class="rect-container">
+
+                            </g>
+                            <rect class="graph-ui" width="500" height="300" opacity="0"></rect>
+                            <clipPath id="clip-chart-01" class="clip-path">
+                                <rect width="166" height="300"></rect>
+                            </clipPath>
+                            <g class="correct-graph" clip-path="url(#clip-chart-01)">
+                                <path class="area" d=""></path>
+                                <path class="graph-path-right" stroke="#4286bc"></path>
+                            </g>
+                            <path class="graph-path-left" d="" stroke="#ff0000"></path>
+                            <path class="graph-path-user" d="" stroke="#e96904"></path>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <div id="chart-02" class="guess-chart" data-settings='{"resX": 500, "resY": 300, "stepY": 2, "bounds": 10, "points": [13.3, 13.4, 13.7, 15.5, 16.3], "correct": [16.5, 16.2, 16.8, 17, 18.01]}'>
+            <div class="chart-container">
+                <div class="chart">
+                    <svg width="530" height="330">
+                        <g class="graph-container" transform="translate(15,15)">
+                            <g class="grid">
+                                <g class="gridX">
+                                </g>
+                                <g class="gridY">
+                                </g>
+                            </g>
+                            <g class="rect-container">
+
+                            </g>
+                            <rect class="graph-ui" width="500" height="300" opacity="0"></rect>
+                            <clipPath id="clip-chart-02" class="clip-path">
+                                <rect width="166" height="300"></rect>
+                            </clipPath>
+                            <g class="correct-graph" clip-path="url(#clip-chart-02)">
+                                <path class="area" d=""></path>
+                                <path class="graph-path-right" stroke="#4286bc"></path>
+                            </g>
+                            <path class="graph-path-left" d="" stroke="#ff0000"></path>
+                            <path class="graph-path-user" d="" stroke="#e96904"></path>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <div id="chart-03" class="guess-chart" data-settings='{"resX": 500, "resY": 300, "stepY": 30000, "bounds": 40000, "points": [5200, 55000, 105000, 187900], "correct": [210300, 187000, 174200, 190000, 190500]}'>
+            <div class="chart-container">
+                <div class="chart">
+                    <svg width="530" height="330">
+                        <g class="graph-container" transform="translate(15,15)">
+                            <g class="grid">
+                                <g class="gridX">
+                                </g>
+                                <g class="gridY">
+                                </g>
+                            </g>
+                            <g class="rect-container">
+
+                            </g>
+                            <rect class="graph-ui" width="500" height="300" opacity="0"></rect>
+                            <clipPath id="clip-chart-03" class="clip-path">
+                                <rect width="166" height="300"></rect>
+                            </clipPath>
+                            <g class="correct-graph" clip-path="url(#clip-chart-03)">
+                                <path class="area" d=""></path>
+                                <path class="graph-path-right" stroke="#4286bc"></path>
+                            </g>
+                            <path class="graph-path-left" d="" stroke="#ff0000"></path>
+                            <path class="graph-path-user" d="" stroke="#e96904"></path>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <div id="chart-04" class="guess-chart chart-random">
+            <div class="chart-container">
+                <div class="chart">
+                    <svg width="530" height="330">
+                        <g class="graph-container" transform="translate(15,15)">
+                            <g class="grid">
+                                <g class="gridX">
+                                </g>
+                                <g class="gridY">
+                                </g>
+                            </g>
+                            <g class="rect-container">
+
+                            </g>
+                            <rect class="graph-ui" width="500" height="300" opacity="0"></rect>
+                            <clipPath id="clip-chart-04" class="clip-path">
+                                <rect width="166" height="300"></rect>
+                            </clipPath>
+                            <g class="correct-graph" clip-path="url(#clip-chart-04)">
+                                <path class="area" d=""></path>
+                                <path class="graph-path-right" stroke="#4286bc"></path>
+                            </g>
+                            <path class="graph-path-left" d="" stroke="#ff0000"></path>
+                            <path class="graph-path-user" d="" stroke="#e96904"></path>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
