@@ -183,12 +183,9 @@
         // Define callbacks.
         var hidePlaceholder = function(x) {
             $chart.find('.rect-container > *').each(function(i) {
-                //if ($(this).attr('x') <= x) {
-                    //$(this).css('fill', 'rgba(0,0,0,0)')
-                //}
-		        if (i < x) {
-			        $(this).css('fill', 'rgba(0,0,0,0)');
-		        }
+                if (i < x) {
+                    $(this).css('fill', 'rgba(0,0,0,0)');
+                }
             });
         };
 
